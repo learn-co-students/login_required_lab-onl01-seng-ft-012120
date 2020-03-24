@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create 
     session[:name] = params[:name]
-    if session[:name].nil? || session[:name].empty?
+    if current_user.nil? || current_user.empty?
       redirect_to login_path
     else
       redirect_to root_path
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy 
-    if session[:name]
+    if current_user
       session.clear
     end
   end

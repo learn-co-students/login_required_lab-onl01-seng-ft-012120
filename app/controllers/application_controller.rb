@@ -6,12 +6,10 @@ class ApplicationController < ActionController::Base
 
 
   def current_user
-    user = session[:name]
+    session[:name]
   end
 
   def require_login
-    if !current_user
-      redirect_to login_path
-    end
+    redirect_to login_path if !current_user
   end
 end
